@@ -1,0 +1,24 @@
+<div class="text-center contenedor-presupuesto">
+    <div class="form-signin">
+
+          <img class="mb-4" src="./assets/img/presupuesto.svg" alt="" width="90">
+          <h1 class="h3 mb-3 fw-normal">PRESUPUESTO</h1>
+      
+          <div class="form-floating mb-3">
+            
+            <input type="number" 
+                    class="form-control" 
+                    id="floatingInput" 
+                    placeholder="Ingrese su presupuesto"
+                    name="cantidad"
+                    [(ngModel)]="cantidad"
+                    (keyup.enter)="iniciar()">
+            <label for="floatingInput">Ingrese su presupuesto</label>
+            <div class="form-text text-start ps-1" [class]="cantidadNoValida === true ? 'text-danger' : 'no-valido'" >El presupuesto de ser mayor a cero.</div>
+          </div>      
+
+          <button (click)="iniciar()" class="w-100 btn btn-lg btn-primary">Iniciar</button>
+          <p class="mt-5 mb-3 text-muted">&copy; Tonatiuj Sánchez - 2021</p>
+
+      </div>
+</div>

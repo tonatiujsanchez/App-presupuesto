@@ -1,0 +1,28 @@
+<h3 class="mb-3">Ingrese gasto</h3>
+<div class="form-text text-start ps-1 mb-1" [class]="gastoIngresado === true ? 'text-danger' : 'no-valido'">Es necesario agregar un gasto.</div>
+<div class="form-floating mb-3">
+    <input type="text" 
+            name="nombreGasto" 
+            [(ngModel)]="nombreGasto" 
+            class="form-control" 
+            id="floatingInput" 
+            placeholder="Ingrese un gasto"
+            (keyup.enter)="agregar()">
+    <label for="floatingInput">Ingrese un gasto</label>
+</div>
+<div class="form-text text-start ps-1 mb-1" [class]="costoIngresado === true ? 'text-danger' : 'no-valido'">Es necesario agregar el costo del gasto.</div>
+<div class="form-floating mb-3">
+    <input type="number" 
+            name="costoGasto" 
+            [(ngModel)]="costoGasto" 
+            class="form-control" 
+            id="floatingPassword" 
+            placeholder="$0.00"
+            (keyup.enter)="agregar()">
+    <label for="floatingPassword">Costo $</label>
+</div>
+<div class="form-floating text-end">
+    <button (click)="agregar()" class="btn btn-primary">Agregar</button>
+</div>
+
+<div class="form-text text-start ps-1 mb-1 text-center" [class]="gastoExcesivo === true ? 'text-danger' : 'no-valido'">El gasto excede el presupuesto.</div>
