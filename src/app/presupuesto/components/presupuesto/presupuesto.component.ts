@@ -26,6 +26,7 @@ export class PresupuestoComponent implements OnInit {
     }
     this.cantidadNoValida = false;
     this.presupuestoService.presupuesto = this.cantidad;
+    this.presupuestoService.restante = this.cantidad;
 
     this.router.navigate(['/gastos'])
   }

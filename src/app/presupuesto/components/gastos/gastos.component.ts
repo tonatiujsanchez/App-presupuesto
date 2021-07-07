@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PresupuestoService } from '../../services/presupuesto.service';
+import { Gasto } from '../../interfaces/gasto.interface';
 
 @Component({
   selector: 'app-gastos',
@@ -13,9 +14,9 @@ export class GastosComponent implements OnInit {
                 private router: Router ) { }
 
   ngOnInit(): void {
-    // if( this.presupuestoService.presupuesto <= 0 ){
-    //   this.router.navigate(['/presupuesto']);
-    // }    
+    if( this.presupuestoService.presupuesto === 0 ){
+      this.router.navigate(['/presupuesto']);
+    }
   }
 
 }

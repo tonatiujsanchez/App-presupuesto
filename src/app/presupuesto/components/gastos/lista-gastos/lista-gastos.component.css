@@ -1,0 +1,14 @@
+.gasto-item{
+    display: flex;
+    align-items: center;
+}
+.gasto-item i{
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.transparente{
+    color: transparent;
+}
+

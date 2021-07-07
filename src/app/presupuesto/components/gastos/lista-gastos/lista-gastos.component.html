@@ -1,36 +1,27 @@
 <div class="row">
     <div class="col-6">
         <div class="alert alert-primary text-center" role="alert">
-           <p class="m-0 fs-5">Presupuesto: <span class="fw-bold">$1,000</span></p>
+           <p class="m-0 fs-5">Presupuesto: <span class="fw-bold">{{ presupuesto | currency }}</span></p>
         </div>
     </div>
     <div class="col-6">
-        <div class="alert alert-success text-center" role="alert">
-            <p class="m-0 fs-5">Restante: <span class="fw-bold">$1,000</span></p>
+        <div class="alert text-center" [ngClass]="classRestante" role="alert">
+            <p class="m-0 fs-5">Restante: <span class="fw-bold">{{ this.presupuestoService.restante | currency }}</span></p>
         </div>
     </div>
 </div>
 <div class="row">
+    <div *ngIf="gastos.length <= 0" class="alert text-center text-secondary mt-4" role="alert">
+        No hay gastos agregados.
+    </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item bg-light d-flex justify-content-between align-items-end">
-            <p class="m-0">Cursos</p>
-            <span class="badge bg-primary rounded-pill">$104</span>
-        </li>
-        <li class="list-group-item bg-light d-flex justify-content-between align-items-end">
-            <p class="m-0">Cursos</p>
-            <span class="badge bg-primary rounded-pill">$100</span>
-        </li>
-        <li class="list-group-item bg-light d-flex justify-content-between align-items-end">
-            <p class="m-0">Cursos</p>
-            <span class="badge bg-primary rounded-pill">$14</span>
-        </li>
-        <li class="list-group-item bg-light d-flex justify-content-between align-items-end">
-            <p class="m-0">Cursos</p>
-            <span class="badge bg-primary rounded-pill">$34</span>
-        </li>
-        <li class="list-group-item bg-light d-flex justify-content-between align-items-end">
-            <p class="m-0">Cursos</p>
-            <span class="badge bg-primary rounded-pill">$41</span>
+        <li *ngFor="let gasto of gastos; let idx = index"
+            (mouseover)="activarGasto( gasto.nombreGasto )"
+            (mouseout)="activarGasto('')" 
+            class="list-group-item bg-light d-flex justify-content-between align-items-end">
+            <p class="m-0 gasto-item"><i (click)="eliminarGasto(idx)" class="bi bi-x" [class]="getClassIcono(gasto)"></i> {{ gasto.nombreGasto }}</p>
+            <span class="badge bg-primary rounded-pill">{{ gasto.costoGasto | currency }}</span>
         </li>
       </ul>
 </div>
+

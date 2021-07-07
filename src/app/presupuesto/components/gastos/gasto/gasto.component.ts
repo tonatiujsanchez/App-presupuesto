@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PresupuestoService } from '../../../services/presupuesto.service';
+import { Gasto } from '../../../interfaces/gasto.interface';
 
 @Component({
   selector: 'app-gasto',
@@ -7,13 +8,17 @@ import { PresupuestoService } from '../../../services/presupuesto.service';
   styleUrls: ['./gasto.component.css']
 })
 export class GastoComponent implements OnInit {
+
+
   gastoIngresado: boolean = false;
   costoIngresado: boolean = false;
 
   gastoExcesivo: boolean = false;
 
-  nombreGasto: string = '';
-  costoGasto!: number; 
+  gasto:Gasto = {
+    nombreGasto: '',
+    costoGasto: 0
+  }
 
   constructor( private presupuestoService: PresupuestoService ) { }
 
@@ -22,22 +27,26 @@ export class GastoComponent implements OnInit {
 
   agregar(){
 
-    if( this.nombreGasto.trim() === ''){
+    if( this.gasto.nombreGasto.trim() === ''){
       this.gastoIngresado = true;
-    }else if( this.costoGasto <= 0 || this.costoGasto == null ){
+    }else if( this.gasto.costoGasto <= 0 || this.gasto.costoGasto == null ){
       this.costoIngresado = true;
       this.gastoExcesivo = false;
     }else{
       this.gastoIngresado = false;
       this.costoIngresado = false;
 
-      if( this.costoGasto > this.presupuestoService.presupuesto ){
+      if( this.gasto.costoGasto > this.presupuestoService.restante ){
         this.gastoExcesivo = true;
         return;
       }
       this.gastoExcesivo = false;
-      console.log('Gasto agregado.');
       
+      this.presupuestoService.agregarGasto( Object.assign({}, this.gasto) );
+      this.gasto = {
+        nombreGasto: '',
+        costoGasto: 0
+      }     
     }
     
   }
